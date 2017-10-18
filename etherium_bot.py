@@ -3,6 +3,7 @@
 import json
 import os
 import praw
+import prawcore
 import time
 
 reddit = praw.Reddit('etheriumbot')
@@ -72,6 +73,7 @@ print('Starting bot...')
 
 while True:
     i = 0
+    print('Loading comments...')
 
     try:
         for comment in reddit.subreddit('all').stream.comments():
@@ -83,7 +85,7 @@ while True:
             if i % 10000 == 0:
                 print(i)
 
-    except praw.exceptions.APIException as e:
+    except (praw.exceptions.APIException, prawcore.exceptions.RequestException) as e:
         print('PRAW error: ', e)
         time.sleep(30)
     except KeyboardInterrupt:
