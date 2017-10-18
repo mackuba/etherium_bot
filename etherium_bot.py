@@ -76,18 +76,19 @@ while True:
     print('Loading comments...')
 
     try:
-        for comment in reddit.subreddit('all').stream.comments():
-            i += 1
+        try:
+            for comment in reddit.subreddit('all').stream.comments():
+                i += 1
 
-            if comment_matches(comment):
-                reply(comment)
+                if comment_matches(comment):
+                    reply(comment)
 
-            if i % 10000 == 0:
-                print(i)
+                if i % 10000 == 0:
+                    print(i)
 
-    except (praw.exceptions.APIException, prawcore.exceptions.RequestException) as e:
-        print('PRAW error: ', e)
-        time.sleep(30)
+        except (praw.exceptions.APIException, prawcore.exceptions.RequestException) as e:
+            print('PRAW error: ', e)
+            time.sleep(30)
     except KeyboardInterrupt:
         print()
         print('Bye!')
