@@ -46,6 +46,10 @@ def comment_matches(comment):
 
     print_comment(comment)
 
+    if comment.author.name.lower().endswith('bot'):
+        print('-> ignoring because the author might be a bot:', comment.author.name)
+        return False
+
     if comment.subreddit.display_name.lower() in subreddit_blacklist:
         print('-> ignoring because of blacklisted subreddit:', comment.subreddit.display_name)
         return False
