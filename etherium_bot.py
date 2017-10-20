@@ -25,7 +25,6 @@ subreddit_blacklist = load_subreddit_blacklist()
 def print_comment(comment):
     print('https://reddit.com%s:' % comment.permalink())
     print('%s: "%s"' % (comment.author.name, comment.body))
-    os.system("afplay /System/Library/Sounds/Ping.aiff")
 
 def comment_matches(comment):
     found = False
@@ -64,6 +63,8 @@ def comment_matches(comment):
 
 def reply(comment):
     print('-> replying:', response)
+    os.system("afplay /System/Library/Sounds/Ping.aiff")
+
     try:
         comment.reply(response)
     except praw.exceptions.APIException as e:
