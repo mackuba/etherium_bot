@@ -8,7 +8,7 @@ import time
 
 reddit = praw.Reddit('etheriumbot')
 
-required_words = ['etherium', 'ethereium', 'etharium']
+required_words = ['etherium', 'ethereium', 'etharium', 'entherium']
 banned_words = ['ethereum', 'spell', 'spelt', 'write', 'wrote', 'written', 'type', 'typo', 'master', 'astrolabe', 'sculptor', 'reach']
 
 banned_subreddits = ['bravenewbies', 'budgetdecks', 'casualmtg', 'competitiveedh', 'custommagic', 'dragonvale', 'dust514', 'edh', 'enairim', 'eve', 'evedreddit', 'evejobs', 'evememes', 'evenewbies', 'eveonline', 'eveporn', 'fittings', 'lrcast', 'magiccardpulls', 'magicdeckbuilding', 'magicduels', 'magictcg', 'modernmagic', 'mtgaltered', 'mtgcube', 'mtgfinance', 'mtggore', 'mtgjudge', 'mtglimited', 'mtgo', 'mtgporn', 'oblivionmods', 'pauper', 'perkusmaximus', 'skyrim', 'skyrimmod_jp', 'skyrimmods', 'skyrimporn', 'skyrimrequiem', 'skywind', 'spikes', 'xedit']
