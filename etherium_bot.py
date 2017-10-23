@@ -71,9 +71,9 @@ def reply(comment):
         print("-> sorry, can't reply:", e, ":(")
 
 print('Starting bot...')
+i = 0
 
 while True:
-    i = 0
     print('Loading comments...')
 
     try:
