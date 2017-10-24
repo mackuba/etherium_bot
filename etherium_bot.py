@@ -23,7 +23,7 @@ def load_subreddit_blacklist():
 subreddit_blacklist = load_subreddit_blacklist()
 
 def print_comment(comment):
-    print('https://reddit.com%s:' % comment.permalink())
+    print('https://reddit.com%s:' % comment.permalink)
     print('%s: "%s"' % (comment.author.name, comment.body))
 
 def comment_matches(comment):
