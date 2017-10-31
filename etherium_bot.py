@@ -74,6 +74,8 @@ def reply(comment):
         comment.reply(response)
     except praw.exceptions.APIException as e:
         print("-> sorry, can't reply:", e, ":(")
+    except prawcore.exceptions.Forbidden:
+        print("-> oops, looks like I'm banned there :(")
 
 print('Starting bot...')
 i = 0
