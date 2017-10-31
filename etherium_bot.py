@@ -12,11 +12,11 @@ required_words = ['etherium', 'ethereium', 'etharium', 'entherium']
 banned_words = [
     'ethereum',
     'spell', 'spelt', 'call', 'write', 'wrote', 'written', 'type', 'typo',
-    'master', 'astrolabe', 'sculptor', 'reach',
+    'master', 'astrolabe', 'sculptor', 'reach', 'city',
     'etherium_bot', 'etherium\\_bot', 'etherium bot'
 ]
 
-banned_subreddits = ['bravenewbies', 'budgetdecks', 'casualmtg', 'competitiveedh', 'custommagic', 'dragonvale', 'dust514', 'edh', 'enairim', 'eve', 'evedreddit', 'evejobs', 'evememes', 'evenewbies', 'eveonline', 'eveporn', 'fittings', 'lrcast', 'magiccardpulls', 'magicdeckbuilding', 'magicduels', 'magictcg', 'modernmagic', 'mtgaltered', 'mtgcube', 'mtgfinance', 'mtggore', 'mtgjudge', 'mtglimited', 'mtgo', 'mtgporn', 'oblivionmods', 'pauper', 'perkusmaximus', 'skyrim', 'skyrimmod_jp', 'skyrimmods', 'skyrimporn', 'skyrimrequiem', 'skywind', 'spikes', 'xedit']
+banned_subreddits = ['bravenewbies', 'budgetdecks', 'casualmtg', 'civclassics', 'civcraft', 'civex', 'civexcirclejerk', 'civextrade', 'civilizatonexperiment', 'civrealms', 'competitiveedh', 'custommagic', 'devoted', 'dragonvale', 'dust514', 'edh', 'enairim', 'eve', 'evedreddit', 'evejobs', 'evememes', 'evenewbies', 'eveonline', 'eveporn', 'fittings', 'lrcast', 'magiccardpulls', 'magicdeckbuilding', 'magicduels', 'magictcg', 'modernmagic', 'mtgaltered', 'mtgcube', 'mtgfinance', 'mtggore', 'mtgjudge', 'mtglimited', 'mtgo', 'mtgporn', 'oblivionmods', 'pauper', 'perkusmaximus', 'skyrim', 'skyrimmod_jp', 'skyrimmods', 'skyrimporn', 'skyrimrequiem', 'skywind', 'spikes', 'tigerstaden', 'xedit']
 
 response = "It's spelled 'Ethereum'."
 
