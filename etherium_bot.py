@@ -16,7 +16,7 @@ banned_words = [
     'etherium_bot', 'etherium\\_bot', 'etherium bot'
 ]
 
-banned_subreddits = ['bravenewbies', 'budgetdecks', 'casualmtg', 'civclassics', 'civcraft', 'civex', 'civexcirclejerk', 'civextrade', 'civilizatonexperiment', 'civrealms', 'competitiveedh', 'custommagic', 'devoted', 'dragonvale', 'dust514', 'edh', 'enairim', 'eve', 'evedreddit', 'evejobs', 'evememes', 'evenewbies', 'eveonline', 'eveporn', 'fittings', 'lrcast', 'magiccardpulls', 'magicdeckbuilding', 'magicduels', 'magictcg', 'modernmagic', 'mtgaltered', 'mtgcube', 'mtgfinance', 'mtggore', 'mtgjudge', 'mtglimited', 'mtgo', 'mtgporn', 'oblivionmods', 'pauper', 'perkusmaximus', 'skyrim', 'skyrimmod_jp', 'skyrimmods', 'skyrimporn', 'skyrimrequiem', 'skywind', 'spikes', 'tigerstaden', 'xedit']
+banned_subreddits = 'bravenewbies budgetdecks casualmtg civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms competitiveedh custommagic devoted dragonvale dust514 edh enairim eve evedreddit evejobs evememes evenewbies eveonline eveporn fittings lrcast magiccardpulls magicdeckbuilding magicduels magictcg modernmagic mtgaltered mtgcube mtgfinance mtggore mtgjudge mtglimited mtgo mtgporn oblivionmods pauper perkusmaximus skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skywind spikes tigerstaden xedit'.split()
 
 response = "It's spelled 'Ethereum'."
 
