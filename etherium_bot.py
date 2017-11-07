@@ -19,14 +19,14 @@ banned_words = [
     'call', 'called', 'calling',
     'write', 'wrote', 'written', 'writing',
     'type', 'typed', 'typing', 'typo',
-    'master', 'astrolabe', 'sculptor', 'reach', 'city',
+    'astrolabe', 'city', 'master', 'reach', 'scimitar', 'sculptor',
     'etherium_bot', 'etherium\\_bot', 'etherium bot'
 ]
 
 required_words_regexp = [re.compile(r'\b%s\b' % word) for word in required_words]
 banned_words_regexp = [re.compile(r'\b%s\b' % word) for word in banned_words]
 
-banned_subreddits = 'bravenewbies budgetdecks casualmtg civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms competitiveedh custommagic devoted dragonvale dust514 edh enairim eve evedreddit evejobs evememes evenewbies eveonline eveporn fittings lrcast magiccardpulls magicdeckbuilding magicduels magictcg modernmagic mtgaltered mtgcube mtgfinance mtggore mtgjudge mtglimited mtgo mtgporn oblivionmods pauper perkusmaximus skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skywind spikes tigerstaden xedit'.split()
+banned_subreddits = '2007scape bravenewbies budgetdecks casualmtg civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms competitiveedh custommagic devoted dragonvale dust514 edh enairim eve evedreddit evejobs evememes evenewbies eveonline eveporn fittings lrcast magiccardpulls magicdeckbuilding magicduels magictcg modernmagic mtgaltered mtgcube mtgfinance mtggore mtgjudge mtglimited mtgo mtgporn oblivionmods pauper perkusmaximus rschronicle rsidleadv runescape runescapemerchanting scape skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skywind spikes tigerstaden xedit'.split()
 
 response = "It's spelled 'Ethereum'."
 
