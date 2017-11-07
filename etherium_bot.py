@@ -34,8 +34,15 @@ def load_subreddit_blacklist():
 subreddit_blacklist = load_subreddit_blacklist()
 
 def print_comment(comment):
+    lines = comment.body.split('\n')
+
+    if len(lines) > 10:
+        text = '\n'.join(lines[0:10]) + "\n(…)"
+    else:
+        text = comment.body
+
     print('https://reddit.com%s:' % comment.permalink)
-    print('%s: "%s"' % (comment.author.name, comment.body))
+    print('%s: "%s"' % (comment.author.name, text))
 
 def comment_matches(comment):
     found = False
