@@ -6,6 +6,9 @@ import praw
 import prawcore
 import time
 
+from praw.models.reddit.comment import Comment
+
+
 reddit = praw.Reddit('etheriumbot')
 
 required_words = ['etherium', 'ethereium', 'etharium', 'entherium']
@@ -63,6 +66,13 @@ def comment_matches(comment):
     for word in banned_words:
         if word in text:
             print('-> ignoring because it includes the word:', word)
+            return False
+
+    parent = comment.parent()
+
+    if isinstance(parent, Comment):
+        if parent.author.name == 'etherium_bot':
+            print('-> ignoring response to myself')
             return False
 
     return True
