@@ -4,6 +4,7 @@ import json
 import os
 import praw
 import prawcore
+import re
 import time
 
 from praw.models.reddit.comment import Comment
@@ -12,6 +13,8 @@ from praw.models.reddit.comment import Comment
 reddit = praw.Reddit('etheriumbot')
 
 required_words = ['etherium', 'ethereium', 'etharium', 'entherium']
+required_words_regexp = [re.compile(r'\b%s\b' % word) for word in required_words]
+
 banned_words = [
     'ethereum',
     'spell', 'spelt', 'call', 'write', 'wrote', 'written', 'type', 'typo',
@@ -39,20 +42,32 @@ def comment_matches(comment):
     text = comment.body.lower()
 
     for word in required_words:
-        index = text.find(word)
-        if index >= 0:
-            if index == 0 or text[index-1] in [" ", "\n"]:
-                found = True
-                break
-            else:
-                print_comment(comment)
-                print('-> ignoring because the string matched in the middle of a word')
-                return False
+        if text.find(word) >= 0:
+            found = True
+            break
 
     if not found:
         return False
 
     print_comment(comment)
+
+    found = False
+
+    for line in text.split('\n'):
+        if line.strip().startswith('>'):
+            continue
+
+        for pattern in required_words_regexp:
+            if pattern.search(line):
+                found = True
+                break
+
+        if found:
+            break
+
+    if not found:
+        print('-> ignoring because the string was found in a quote or as a part of another word')
+        return False
 
     for suffix in ['bot', 'moderator', 'notifier']:
         if comment.author.name.lower().endswith(suffix):
