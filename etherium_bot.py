@@ -12,7 +12,7 @@ from praw.models.reddit.comment import Comment
 
 reddit = praw.Reddit('etheriumbot')
 
-required_words = ['etherium', 'ethereium', 'etharium', 'entherium']
+required_words = ['etherium', 'ethereium', 'etharium', 'entherium', 'localetherium']
 banned_words = [
     'ethereum',
     'spell', 'spelt', 'spelled', 'spelling',
