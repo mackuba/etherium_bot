@@ -21,7 +21,7 @@ banned_words = [
     'type', 'typed', 'typing', 'typo',
     'astrolabe', 'city', 'master', 'reach', 'scimitar', 'sculptor',
     'dragonvale', 'eve', 'gathering', 'hearthstone', 'minecraft', 'mtg', 'oblivion', 'runescape', 'skyrim',
-    'etherium_bot', 'etherium\\_bot', 'etherium bot'
+    'etherium_bot', 'etherium\\_bot', 'bot'
 ]
 
 required_words_regexp = [re.compile(r'\b%s\b' % word) for word in required_words]
