@@ -13,14 +13,18 @@ from praw.models.reddit.comment import Comment
 reddit = praw.Reddit('etheriumbot')
 
 required_words = ['etherium', 'ethereium', 'etharium', 'entherium']
-required_words_regexp = [re.compile(r'\b%s\b' % word) for word in required_words]
-
 banned_words = [
     'ethereum',
-    'spell', 'spelt', 'call', 'write', 'wrote', 'written', 'type', 'typo',
+    'spell', 'spelt', 'spelled', 'spelling',
+    'call', 'called', 'calling',
+    'write', 'wrote', 'written', 'writing',
+    'type', 'typed', 'typing', 'typo',
     'master', 'astrolabe', 'sculptor', 'reach', 'city',
     'etherium_bot', 'etherium\\_bot', 'etherium bot'
 ]
+
+required_words_regexp = [re.compile(r'\b%s\b' % word) for word in required_words]
+banned_words_regexp = [re.compile(r'\b%s\b' % word) for word in banned_words]
 
 banned_subreddits = 'bravenewbies budgetdecks casualmtg civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms competitiveedh custommagic devoted dragonvale dust514 edh enairim eve evedreddit evejobs evememes evenewbies eveonline eveporn fittings lrcast magiccardpulls magicdeckbuilding magicduels magictcg modernmagic mtgaltered mtgcube mtgfinance mtggore mtgjudge mtglimited mtgo mtgporn oblivionmods pauper perkusmaximus skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skywind spikes tigerstaden xedit'.split()
 
@@ -64,8 +68,8 @@ def comment_matches(comment):
         if line.strip().startswith('>'):
             continue
 
-        for pattern in required_words_regexp:
-            if pattern.search(line):
+        for regexp in required_words_regexp:
+            if regexp.search(line):
                 found = True
                 break
 
@@ -85,9 +89,9 @@ def comment_matches(comment):
         print('-> ignoring because of blacklisted subreddit:', comment.subreddit.display_name)
         return False
 
-    for word in banned_words:
-        if word in text:
-            print('-> ignoring because it includes the word:', word)
+    for regexp in banned_words_regexp:
+        if regexp.search(text):
+            print('-> ignoring because it includes the word:', regexp.pattern.replace(r'\b', ''))
             return False
 
     parent = comment.parent()
