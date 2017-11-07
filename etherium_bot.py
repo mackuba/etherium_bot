@@ -53,7 +53,7 @@ def comment_matches(comment):
     text = comment.body.lower()
 
     for word in required_words:
-        if text.find(word) >= 0:
+        if word in text:
             found = True
             break
 
@@ -65,7 +65,7 @@ def comment_matches(comment):
     found = False
 
     for line in text.split('\n'):
-        if line.strip().startswith('>'):
+        if line.strip().startswith('>') or ('"' in line) or ('\'' in line):
             continue
 
         for regexp in required_words_regexp:
@@ -77,7 +77,7 @@ def comment_matches(comment):
             break
 
     if not found:
-        print('-> ignoring because the string was found in a quote or as a part of another word')
+        print('-> ignoring because the string might be inside a quote or a part of another word')
         return False
 
     for suffix in ['bot', 'moderator', 'notifier']:
