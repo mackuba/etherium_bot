@@ -14,7 +14,7 @@ reddit = praw.Reddit('etheriumbot')
 
 required_words = ['etherium', 'ethereium', 'etharium', 'entherium', 'localetherium']
 banned_words = [
-    'ethereum',
+    'ethereum', '/r/etherium',
     'spell', 'spelt', 'spelled', 'spelling',
     'call', 'called', 'calling',
     'write', 'wrote', 'written', 'writing',
