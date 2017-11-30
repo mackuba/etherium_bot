@@ -4,6 +4,7 @@ import json
 import os
 import praw
 import prawcore
+import random
 import re
 import time
 
@@ -35,11 +36,11 @@ my_comments = []
 response_text = "It's spelled 'Ethereum'."
 
 response_map = [
-    [['good boy', 'good lad', 'epic', 'nice', 'cool'], '[:-]'],
-    [['thanks', 'thank you'], "You're welcome!"],
-    [['fuck', 'stfu', 'worthless', 'useless', 'stupid bot', re.compile(r'\bkill\b'), re.compile(r'\bdie\b')], ':('],
-    [['your handle', 'your name', 'your username', 'your nick'], 'thatsthejoke.gif'],
-    [[re.compile(r'^eth[ae]\w+\??$')], 'Stop it :>'],
+    [['good boy', 'good lad', 'epic', 'nice', 'cool'], ['[:-]', 'Thanks! [:-]', 'Thanks!']],
+    [['thanks', 'thank you'], ["You're welcome [:-]", "You're welcome!", 'No problem [:-]', 'No problem!']],
+    [['fuck', 'stfu', 'worthless', 'useless', 'stupid bot', re.compile(r'\bkill\b'), re.compile(r'\bdie\b')], [':(']],
+    [['your handle', 'your name', 'your username', 'your nick'], ['thatsthejoke.gif', "That's the point [:-]"]],
+    [[re.compile(r'^eth[ae]\w+\??$')], ['Stop it :>', 'Nice try [:-]', 'ಠ_ಠ']],
 ]
 
 def load_subreddit_blacklist():
@@ -142,7 +143,7 @@ def reply_to_response(comment):
 
     text = comment.body.lower()
 
-    for (patterns, response) in response_map:
+    for (patterns, responses) in response_map:
         found = False
 
         for pattern in patterns:
@@ -156,7 +157,7 @@ def reply_to_response(comment):
                     break
 
         if found:
-            reply(comment, response)
+            reply(comment, random.choice(responses))
             return
 
     print('-> no response pattern matched')
