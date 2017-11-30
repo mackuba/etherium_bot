@@ -29,7 +29,17 @@ banned_words_regexp = [re.compile(r'\b%s\b' % word) for word in banned_words]
 
 banned_subreddits = '12winarenalog 2007scape affinityforartifacts arenahs bravenewbies budgetdecks casualmtg civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms competitiveedh competitivehs competitivewild customhearthstone custommagic devoted dragonvale dust514 edh enairim eve evedreddit evejobs evememes evenewbies eveonline eveporn fittings hearthdecklists hearthmemes hearthstone hearthstonecirclejerk hearthstonevods hscoaching hspulls hstournaments lrcast magiccardpulls magicdeckbuilding magicduels magictcg modernmagic mtgaltered mtgcube mtgfinance mtggore mtgjudge mtglimited mtgo mtgporn oblivionmods pauper perkusmaximus rschronicle rsidleadv runescape runescapemerchanting scape skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skywind spikes thehearth tigerstaden wildhearthstone xedit'.split()
 
-response = "It's spelled 'Ethereum'."
+my_comments = []
+
+response_text = "It's spelled 'Ethereum'."
+
+response_map = [
+    [['good boy', 'good lad', 'epic', 'nice', 'cool'], '[:-]'],
+    [['thanks', 'thank you'], "You're welcome!"],
+    [['fuck', 'stfu', 'worthless', 'useless', 'stupid bot', 'kill', 'die'], ':('],
+    [['your handle', 'your name', 'your username', 'your nick'], 'thatsthejoke.gif'],
+    [['etherium'], 'Stop it :>'],
+]
 
 def load_subreddit_blacklist():
     page = reddit.subreddit('Bottiquette').wiki['robots_txt_json']
@@ -48,6 +58,14 @@ def print_comment(comment):
 
     print('https://reddit.com%s:' % comment.permalink)
     print('%s: "%s"' % (comment.author.name, text))
+
+def responds_to_me(comment):
+    parent = comment.parent()
+
+    if isinstance(parent, Comment):
+        return (parent in my_comments)
+    else:
+        return False
 
 def comment_matches(comment):
     found = False
@@ -81,12 +99,11 @@ def comment_matches(comment):
         print('-> ignoring because the string might be inside a quote or a part of another word')
         return False
 
-    for suffix in ['bot', 'moderator', 'notifier']:
-        if comment.author.name.lower().endswith(suffix):
-            print('-> ignoring because the author might be a bot:', comment.author.name)
-            return False
+    if author_is_bot(comment):
+        print('-> ignoring because the author might be a bot:', comment.author.name)
+        return False
 
-    if comment.subreddit.display_name.lower() in subreddit_blacklist:
+    if blacklisted_subreddit(comment):
         print('-> ignoring because of blacklisted subreddit:', comment.subreddit.display_name)
         return False
 
@@ -95,21 +112,56 @@ def comment_matches(comment):
             print('-> ignoring because it includes the word:', regexp.pattern.replace(r'\b', ''))
             return False
 
-    parent = comment.parent()
-
-    if isinstance(parent, Comment):
-        if parent.author.name == 'etherium_bot':
-            print('-> ignoring response to myself')
-            return False
-
     return True
 
-def reply(comment):
-    print('-> replying:', response)
+def author_is_bot(comment):
+    for suffix in ['bot', 'moderator', 'notifier']:
+        if comment.author.name.lower().endswith(suffix):
+            return True
+
+    return False
+
+def blacklisted_subreddit(comment):
+    return comment.subreddit.display_name.lower() in subreddit_blacklist
+
+def reply_to_comment(comment):
+    reply(comment, response_text)
+
+def reply_to_response(comment):
+    print('*REPLY RECEIVED*')
+    print_comment(comment)
+
+    if author_is_bot(comment):
+        print('-> ignoring because the author might be a bot:', comment.author.name)
+        return
+
+    if blacklisted_subreddit(comment):
+        print('-> ignoring because of blacklisted subreddit:', comment.subreddit.display_name)
+        return
+
+    text = comment.body.lower()
+
+    for (patterns, response) in response_map:
+        found = False
+
+        for pattern in patterns:
+            if pattern in text:
+                found = True
+                break
+
+        if found:
+            reply(comment, response)
+            return
+
+    print('-> no response pattern matched')
+
+def reply(comment, text):
+    print('-> replying:', text)
     os.system("afplay /System/Library/Sounds/Ping.aiff")
 
     try:
-        comment.reply(response)
+        reply = comment.reply(text)
+        my_comments.append(reply)
     except praw.exceptions.APIException as e:
         print("-> sorry, can't reply:", e, ":(")
     except prawcore.exceptions.Forbidden:
@@ -126,8 +178,10 @@ while True:
             for comment in reddit.subreddit('all').stream.comments():
                 i += 1
 
-                if comment_matches(comment):
-                    reply(comment)
+                if responds_to_me(comment):
+                    reply_to_response(comment)
+                elif comment_matches(comment):
+                    reply_to_comment(comment)
 
                 if i % 10000 == 0:
                     print(i)
