@@ -26,6 +26,7 @@ banned_words = [
 
 required_words_regexp = [re.compile(r'\b%s\b' % word) for word in required_words]
 banned_words_regexp = [re.compile(r'\b%s\b' % word) for word in banned_words]
+pattern_type = type(re.compile(''))
 
 banned_subreddits = '12winarenalog 2007scape affinityforartifacts arenahs bravenewbies budgetdecks casualmtg civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms competitiveedh competitivehs competitivewild customhearthstone custommagic devoted dragonvale dust514 edh enairim eve evedreddit evejobs evememes evenewbies eveonline eveporn fittings hearthdecklists hearthmemes hearthstone hearthstonecirclejerk hearthstonevods hscoaching hspulls hstournaments lrcast magiccardpulls magicdeckbuilding magicduels magictcg modernmagic mtgaltered mtgcube mtgfinance mtggore mtgjudge mtglimited mtgo mtgporn oblivionmods pauper perkusmaximus rschronicle rsidleadv runescape runescapemerchanting scape skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skywind spikes thehearth tigerstaden wildhearthstone xedit'.split()
 
@@ -36,9 +37,9 @@ response_text = "It's spelled 'Ethereum'."
 response_map = [
     [['good boy', 'good lad', 'epic', 'nice', 'cool'], '[:-]'],
     [['thanks', 'thank you'], "You're welcome!"],
-    [['fuck', 'stfu', 'worthless', 'useless', 'stupid bot', 'kill', 'die'], ':('],
+    [['fuck', 'stfu', 'worthless', 'useless', 'stupid bot', re.compile(r'\bkill\b'), re.compile(r'\bdie\b')], ':('],
     [['your handle', 'your name', 'your username', 'your nick'], 'thatsthejoke.gif'],
-    [['etherium'], 'Stop it :>'],
+    [[re.compile(r'^eth[ae]\w+\??$')], 'Stop it :>'],
 ]
 
 def load_subreddit_blacklist():
@@ -145,9 +146,14 @@ def reply_to_response(comment):
         found = False
 
         for pattern in patterns:
-            if pattern in text:
-                found = True
-                break
+            if isinstance(pattern, pattern_type):
+                if pattern.search(text):
+                    found = True
+                    break
+            else:
+                if pattern in text:
+                    found = True
+                    break
 
         if found:
             reply(comment, response)
