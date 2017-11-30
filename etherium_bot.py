@@ -32,6 +32,7 @@ pattern_type = type(re.compile(''))
 banned_subreddits = '12winarenalog 2007scape affinityforartifacts arenahs bravenewbies budgetdecks casualmtg civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms competitiveedh competitivehs competitivewild customhearthstone custommagic devoted dragonvale dust514 edh enairim eve evedreddit evejobs evememes evenewbies eveonline eveporn fittings hearthdecklists hearthmemes hearthstone hearthstonecirclejerk hearthstonevods hscoaching hspulls hstournaments lrcast magiccardpulls magicdeckbuilding magicduels magictcg modernmagic mtgaltered mtgcube mtgfinance mtggore mtgjudge mtglimited mtgo mtgporn oblivionmods pauper perkusmaximus rschronicle rsidleadv runescape runescapemerchanting scape skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skywind spikes thehearth tigerstaden wildhearthstone xedit'.split()
 
 my_comments = []
+replied_to = []
 
 response_text = "It's spelled 'Ethereum'."
 
@@ -141,6 +142,10 @@ def reply_to_response(comment):
         print('-> ignoring because of blacklisted subreddit:', comment.subreddit.display_name)
         return
 
+    if comment.author.name in replied_to:
+        print("-> ignoring because we've already replied once to this user:", comment.author.name)
+        return
+
     text = comment.body.lower()
 
     for (patterns, responses) in response_map:
@@ -158,6 +163,7 @@ def reply_to_response(comment):
 
         if found:
             reply(comment, random.choice(responses))
+            replied_to.append(comment.author.name)
             return
 
     print('-> no response pattern matched')
