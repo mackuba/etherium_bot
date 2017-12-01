@@ -87,7 +87,7 @@ def comment_matches(comment):
     found = False
 
     for line in text.split('\n'):
-        if line.strip().startswith('>') or ('"' in line):
+        if line.strip().startswith('>') or ('"' in line) or ('*' in line):
             continue
 
         for regexp in required_words_regexp:
@@ -99,7 +99,7 @@ def comment_matches(comment):
             break
 
     if not found:
-        print('-> ignoring because the string might be inside a quote or a part of another word')
+        print('-> ignoring because the string might be inside a quote/reference or a part of another word')
         return False
 
     if author_is_bot(comment):
