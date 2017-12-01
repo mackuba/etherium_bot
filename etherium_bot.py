@@ -127,6 +127,9 @@ def author_is_bot(comment):
 def blacklisted_subreddit(comment):
     return comment.subreddit.display_name.lower() in subreddit_blacklist
 
+def ping():
+    os.system("afplay /System/Library/Sounds/Ping.aiff")
+
 def reply_to_comment(comment):
     reply(comment, response_text)
 
@@ -167,10 +170,11 @@ def reply_to_response(comment):
             return
 
     print('-> no response pattern matched')
+    ping()
 
 def reply(comment, text):
     print('-> replying:', text)
-    os.system("afplay /System/Library/Sounds/Ping.aiff")
+    ping()
 
     try:
         reply = comment.reply(text)
