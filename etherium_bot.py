@@ -121,6 +121,18 @@ def comment_matches(comment):
             print('-> ignoring because it includes the word:', regexp.pattern.replace(r'\b', ''))
             return False
 
+    parent = comment.parent()
+
+    if isinstance(parent, Comment):
+        parent_text = parent.body
+    else:
+        parent_text = parent.title + "|" + parent.selftext
+
+    for regexp in required_words_regexp:
+        if regexp.search(parent_text):
+            print('-> ignoring because parent comment/post includes the word:', regexp.pattern.replace(r'\b', ''))
+            return False
+
     return True
 
 def author_is_bot(comment):
