@@ -13,14 +13,14 @@ from praw.models.reddit.comment import Comment
 
 reddit = praw.Reddit('etheriumbot')
 
-required_words = ['etherium', 'ethereium', 'etharium', 'entherium', 'localetherium']
+required_words = ['etherium', 'etheriums', 'ethereium', 'etharium', 'entherium', 'localetherium']
 banned_words = [
     'ethereum', '/r/etherium',
     'spell', 'spelt', 'spelled', 'spelling',
     'call', 'called', 'calling',
     'write', 'wrote', 'written', 'writing',
     'type', 'typed', 'typing', 'typo',
-    'astrolabe', 'city', 'master', 'reach', 'scimitar', 'sculptor',
+    'astrolabe', 'city', 'master', 'reach', 'scimitar', 'sculptor', 'shaper',
     'dragonvale', 'eve', 'gathering', 'hearthstone', 'minecraft', 'mtg', 'oblivion', 'runescape', 'skyrim',
     'etherium_bot', 'etherium\\_bot', 'bot'
 ]
@@ -29,7 +29,7 @@ required_words_regexp = [re.compile(r'\b%s\b' % word) for word in required_words
 banned_words_regexp = [re.compile(r'\b%s\b' % word) for word in banned_words]
 pattern_type = type(re.compile(''))
 
-banned_subreddits = '12winarenalog 2007scape affinityforartifacts arenahs bravenewbies budgetdecks casualmtg civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms competitiveedh competitivehs competitivewild customhearthstone custommagic devoted dragonvale dust514 edh enairim eve evedreddit evejobs evememes evenewbies eveonline eveporn fittings hearthdecklists hearthmemes hearthstone hearthstonecirclejerk hearthstonevods hscoaching hspulls hstournaments lrcast magiccardpulls magicdeckbuilding magicduels magictcg modernmagic mtgaltered mtgcube mtgfinance mtggore mtgjudge mtglimited mtgo mtgporn oblivionmods pauper perkusmaximus rschronicle rsidleadv runescape runescapemerchanting scape skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skywind spikes thehearth tigerstaden wildhearthstone xedit'.split()
+banned_subreddits = '12winarenalog 2007scape affinityforartifacts arenahs bravenewbies budgetdecks casualmtg civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms competitiveedh competitivehs competitivewild customhearthstone custommagic devoted dragonvale dust514 edh enairim eve evedreddit evejobs evememes evenewbies eveonline eveporn fittings freemagic hearthdecklists hearthmemes hearthstone hearthstonecirclejerk hearthstonevods hscoaching hspulls hstournaments lrcast magiccardpulls magicdeckbuilding magicduels magictcg modernmagic mtgaltered mtgcube mtgfinance mtggore mtgjudge mtglimited mtgo mtgporn oblivionmods pauper perkusmaximus rschronicle rsidleadv runescape runescapemerchanting scape skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skywind spikes thehearth tigerstaden wildhearthstone xedit'.split()
 
 my_comments = []
 replied_to = []
@@ -37,11 +37,17 @@ replied_to = []
 response_text = "It's spelled 'Ethereum'."
 
 response_map = [
-    [['good boy', 'good lad', 'epic', 'nice', 'cool'], ['[:-]', 'Thanks! [:-]', 'Thanks!']],
+    [['good boy', 'good lad', 'epic', 'nice', 'cool', 'neat'], ['[:-]', 'Thanks! [:-]', 'Thanks!']],
     [['thanks', 'thank you'], ["You're welcome [:-]", "You're welcome!", 'No problem [:-]', 'No problem!']],
-    [['fuck', 'stfu', 'worthless', 'useless', 'stupid bot', re.compile(r'\bkill\b'), re.compile(r'\bdie\b')], [':(']],
+    [['fuck', 'stfu', 'piss', 'worthless', 'useless', 'stupid bot', re.compile(r'\bkill\b'), re.compile(r'\bdie\b')],
+        [':(']],
     [['your handle', 'your name', 'your username', 'your nick'], ['thatsthejoke.gif', "That's the point [:-]"]],
     [[re.compile(r'^eth[ae]\w+\??$')], ['Stop it :>', 'Nice try [:-]', 'ಠ_ಠ']],
+    [
+        ['isbot etherium_bot'],
+        ['Of course I am a bot!', "Of course I'm a bot, how could you doubt it!",
+         "I'm totally a bot, srsly. \*beep boop\*"]
+    ]
 ]
 
 def load_subreddit_blacklist():
