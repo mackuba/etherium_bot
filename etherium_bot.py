@@ -124,9 +124,9 @@ def comment_matches(comment):
     parent = comment.parent()
 
     if isinstance(parent, Comment):
-        parent_text = parent.body
+        parent_text = parent.body.lower()
     else:
-        parent_text = parent.title + "|" + parent.selftext
+        parent_text = parent.title.lower() + "|" + parent.selftext.lower()
 
     for regexp in required_words_regexp:
         if regexp.search(parent_text):
