@@ -221,7 +221,7 @@ while True:
                 if i % 10000 == 0:
                     print(i)
 
-        except (praw.exceptions.APIException, prawcore.exceptions.RequestException) as e:
+        except (praw.exceptions.APIException, prawcore.exceptions.PrawcoreException) as e:
             print('PRAW error: ', e)
             time.sleep(30)
     except KeyboardInterrupt:
