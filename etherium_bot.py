@@ -20,7 +20,7 @@ banned_words = [
     'call', 'called', 'calling',
     'write', 'wrote', 'written', 'writing',
     'type', 'typed', 'typing', 'typo',
-    'astrolabe', 'city', 'master', 'reach', 'scimitar', 'sculptor', 'shaper',
+    'astrolabe', 'city', 'master', 'metal', 'reach', 'scimitar', 'sculptor', 'shaper',
     'dragonvale', 'eve', 'gathering', 'hearthstone', 'minecraft', 'mtg', 'oblivion', 'runescape', 'skyrim',
     'etherium_bot', 'etherium\\_bot', 'bot'
 ]
