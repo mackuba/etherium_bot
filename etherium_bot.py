@@ -46,7 +46,7 @@ response_map = [
         ['[:-]', 'Thanks! [:-]', 'Thanks!']
     ],
     [
-        ['thanks', 'thank you']
+        ['thanks', 'thank you'],
         ["You're welcome [:-]", "You're welcome!", 'No problem [:-]', 'No problem!']
     ],
     [
