@@ -37,12 +37,15 @@ replied_to = []
 response_text = "It's spelled 'Ethereum'."
 
 response_map = [
-    [['good boy', 'good lad', 'epic', 'nice', 'cool', 'neat'], ['[:-]', 'Thanks! [:-]', 'Thanks!']],
+    [['good boy', 'good lad'], ['[:-]'],
+    [['epic', 'nice', 'cool', 'neat'], ['[:-]', 'Thanks! [:-]', 'Thanks!']],
     [['thanks', 'thank you'], ["You're welcome [:-]", "You're welcome!", 'No problem [:-]', 'No problem!']],
-    [['fuck', 'stfu', 'piss', 'worthless', 'useless', 'stupid bot', re.compile(r'\bkill\b'), re.compile(r'\bdie\b')],
-        [':(']],
+    [
+        ['fuck', 'stfu', 'piss', 'worthless', 'useless', 'stupid bot', 'go to hell', re.compile(r'\bkill\b'), re.compile(r'\bdie\b')],
+        [':(']
+    ],
     [['your handle', 'your name', 'your username', 'your nick'], ['thatsthejoke.gif', "That's the point [:-]"]],
-    [[re.compile(r'^eth[ae]\w+\??$')], ['Stop it :>', 'Nice try [:-]', 'ಠ_ಠ']],
+    [[re.compile(r'^a?eth[aei]+r\w+\??$')], ['Stop it :>', 'Nice try [:-]', 'ಠ_ಠ']],
     [
         ['isbot etherium_bot'],
         ['Of course I am a bot!', "Of course I'm a bot, how could you doubt it!",
