@@ -132,8 +132,12 @@ def comment_matches(comment):
     found = False
 
     for line in text.split('\n'):
-        if line.strip().startswith('>') or ('"' in line) or ('*' in line) or ('://' in line):
+        if line.strip().startswith('>'):
             continue
+
+        for symbol in ['"', '*', '://', '’', '”', '‘', '‛', '“', '‟', '«', '»']:
+            if symbol in line:
+                continue
 
         for regexp in required_words_regexp:
             if regexp.search(line):
