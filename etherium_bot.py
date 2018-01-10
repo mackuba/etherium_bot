@@ -54,6 +54,10 @@ response_map = [
         ['np [:-]']
     ],
     [
+        ['catch'],
+        []
+    ],
+    [
         ['epic', 'nice', 'cool', 'neat'],
         ['Thanks! [:-]', 'Thanks!']
     ],
@@ -226,8 +230,9 @@ def reply_to_response(comment):
                     break
 
         if found:
-            reply(comment, random.choice(responses))
-            replied_to.append(comment.author.name)
+            if responses:
+                reply(comment, random.choice(responses))
+                replied_to.append(comment.author.name)
             return
 
     print('-> no response pattern matched')
