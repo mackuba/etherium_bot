@@ -42,16 +42,32 @@ response_map = [
         ['[:-]']
     ],
     [
-        ['epic', 'nice', 'cool', 'neat'],
-        ['[:-]', 'Thanks! [:-]', 'Thanks!']
+        ['love you', 'love this bot', 'my hero', 'my favorite', 'my favourite'],
+        ['<3']
     ],
     [
-        ['thanks', 'thank you'],
+        ['thanks', 'thank you', 'thx'],
         ["You're welcome [:-]", "You're welcome!", 'No problem [:-]', 'No problem!']
     ],
     [
-        ['fuck', 'stfu', 'piss', 'worthless', 'useless', 'stupid bot', 'go to hell', re.compile(r'\bkill\b'),
-         re.compile(r'\bdie\b')],
+        [re.compile(r'^ty$')],
+        ['np [:-]']
+    ],
+    [
+        ['epic', 'nice', 'cool', 'neat'],
+        ['Thanks! [:-]', 'Thanks!']
+    ],
+    [
+        ['sorry'],
+        ['No problem [:-]']
+    ],
+    [
+        ["don't care", "dont care", "could care less", "couldn't care less"],
+        ['¯\\\_(ツ)\_/¯']
+    ],
+    [
+        ['fuck', 'stfu', 'piss', 'dick', 'worthless', 'useless', 'annoying', 'stupid bot', 'go to hell', 'shut up',
+         'shutup', re.compile(r'\bkill\b'), re.compile(r'\bdie\b')],
         [':(']
     ],
     [
@@ -59,7 +75,11 @@ response_map = [
         ['thatsthejoke.gif', "That's the point [:-]"]
     ],
     [
-        [re.compile(r'^a?eth[aei]+r\w+\??$')],
+        ['grammar nazi'],
+        ["Actually, it's spelling, not grammar [:-]"]
+    ],
+    [
+        [re.compile(r'^\s*([aeir]+th[aei]+r\w+\??\s*)+\s*$')],
         ['Stop it :>', 'Nice try [:-]', 'ಠ_ಠ']
     ],
     [
