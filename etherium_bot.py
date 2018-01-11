@@ -75,6 +75,10 @@ response_map = [
         ['¯\\\_(ツ)\_/¯']
     ],
     [
+        [re.compile(r'^(actually,? )?it\'s (actually )?(spelled|spelt)')],
+        ["It's spelled \"you're talking to a bot\" [:-]"]
+    ],
+    [
         ['fuck', 'stfu', 'piss', 'dick', 'worthless', 'useless', 'annoying', 'stupid bot', 'go to hell', 'shut up',
          'shutup', re.compile(r'\bkill\b'), re.compile(r'\bdie\b')],
         [':(']
