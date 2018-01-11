@@ -133,25 +133,7 @@ def comment_matches(comment):
 
     print_comment(comment)
 
-    found = False
-
-    for line in text.split('\n'):
-        if line.strip().startswith('>'):
-            continue
-
-        for symbol in ['"', '*', '://', '’', '”', '‘', '‛', '“', '‟', '«', '»']:
-            if symbol in line:
-                continue
-
-        for regexp in required_words_regexp:
-            if regexp.search(line):
-                found = True
-                break
-
-        if found:
-            break
-
-    if not found:
+    if not comment_text_really_matches(text):
         print('-> ignoring because the string might be inside a quote/reference or a part of another word')
         return False
 
@@ -181,6 +163,27 @@ def comment_matches(comment):
             return False
 
     return True
+
+def comment_text_really_matches(text):
+    for line in text.split('\n'):
+        if line.strip().startswith('>'):
+            continue
+
+        might_be_quote = False
+
+        for symbol in ['"', '*', '://', '”', '“', '‟', '‘', '‛', '«', '»']:
+            if symbol in line:
+                might_be_quote = True
+                break
+
+        if might_be_quote:
+            continue
+
+        for regexp in required_words_regexp:
+            if regexp.search(line):
+                return True
+
+    return False
 
 def author_is_bot(comment):
     for suffix in ['bot', 'moderator', 'notifier']:
