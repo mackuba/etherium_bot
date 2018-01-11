@@ -46,6 +46,10 @@ response_map = [
         ['<3']
     ],
     [
+        ['you understand', 'you understood'],
+        ["I'm just a bot [:-]"]
+    ],
+    [
         ['thanks', 'thank you', 'thx'],
         ["You're welcome [:-]", "You're welcome!", 'No problem [:-]', 'No problem!']
     ],
