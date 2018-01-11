@@ -145,6 +145,10 @@ def comment_matches(comment):
         print('-> ignoring because of blacklisted subreddit:', comment.subreddit.display_name)
         return False
 
+    if len(comment.body) > 1000:
+        print('-> ignoring because the comment is too long:', len(comment.body), 'characters')
+        return False
+
     for regexp in banned_words_regexp:
         if regexp.search(text):
             print('-> ignoring because it includes the word:', regexp.pattern.replace(r'\b', ''))
