@@ -230,7 +230,17 @@ def reply_to_comment(comment):
     reply(comment, response_text)
 
 def reply_to_mention(comment):
+    print('*MENTIONED*')
     print_comment(comment)
+
+    if author_is_bot(comment):
+        print('-> ignoring because the author might be a bot:', comment.author.name)
+        return
+
+    if blacklisted_subreddit(comment):
+        print('-> ignoring because of blacklisted subreddit:', comment.subreddit.display_name)
+        return
+
     reply(comment, mention_response)
 
 def reply_to_response(comment):
