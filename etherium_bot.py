@@ -36,6 +36,7 @@ my_comments = []
 replied_to = []
 
 response_text = "It's spelled 'Ethereum'."
+mention_response = "\*beep boop\*"
 
 response_map = [
     [
@@ -128,6 +129,15 @@ def responds_to_me(comment):
     else:
         return False
 
+def mentions_me(comment):
+    text = comment.body.lower()
+
+    for phrase in ['etherium_bot', 'etherium\\_bot', 'etherium bot']:
+        if phrase in text:
+            return True
+
+    return False
+
 def comment_matches(comment):
     found = False
     text = comment.body.lower()
@@ -217,6 +227,10 @@ def ping():
 def reply_to_comment(comment):
     reply(comment, response_text)
 
+def reply_to_mention(comment):
+    print_comment(comment)
+    reply(comment, mention_response)
+
 def reply_to_response(comment):
     print('*REPLY RECEIVED*')
     print_comment(comment)
@@ -287,6 +301,8 @@ while True:
 
                 if responds_to_me(comment):
                     reply_to_response(comment)
+                elif mentions_me(comment):
+                    reply_to_mention(comment)
                 elif comment_matches(comment):
                     reply_to_comment(comment)
 
