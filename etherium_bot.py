@@ -58,15 +58,15 @@ response_map = [
         []
     ],
     [
-        ['epic', 'nice', 'cool', 'neat'],
+        ['epic', 'nice', 'cool', 'neat', 'great'],
         ['Thanks! [:-]', 'Thanks!']
     ],
     [
-        ['sorry'],
+        ['sorry', 'my bad'],
         ['No problem [:-]']
     ],
     [
-        ["don't care", "dont care", "could care less", "couldn't care less"],
+        ["don't care", 'dont care', 'could care less', "couldn't care less", 'nobody cares'],
         ['¯\\\_(ツ)\_/¯']
     ],
     [
@@ -76,7 +76,7 @@ response_map = [
     ],
     [
         ['your handle', 'your name', 'your username', 'your nick'],
-        ['thatsthejoke.gif', "That's the point [:-]"]
+        ["I correct people who write 'etherium', so I'm an etherium bot, very logical [:-]"]
     ],
     [
         ['grammar nazi'],
@@ -84,7 +84,7 @@ response_map = [
     ],
     [
         [re.compile(r'^\s*([aeir]+th[aei]+r\w+\??\s*)+\s*$')],
-        ['Stop it :>', 'Nice try [:-]', 'ಠ_ಠ']
+        ['Stop it :>', 'Nice try [:-]', 'ಠ_ಠ', 'No.']
     ],
     [
         ['isbot etherium_bot'],
