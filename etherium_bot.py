@@ -174,13 +174,16 @@ def comment_matches(comment):
     return True
 
 def comment_text_really_matches(text):
+    if '://' in text:
+        return False
+
     for line in text.split('\n'):
         if line.strip().startswith('>'):
             continue
 
         might_be_quote = False
 
-        for symbol in ['"', '*', '://', '”', '“', '‟', '‘', '‛', '«', '»']:
+        for symbol in ['"', '*', '”', '“', '‟', '‘', '‛', '«', '»']:
             if symbol in line:
                 might_be_quote = True
                 break
