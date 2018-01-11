@@ -32,6 +32,7 @@ pattern_type = type(re.compile(''))
 
 banned_subreddits = '12winarenalog 2007scape actualredstone admincraft adorableocelots affinityforartifacts ahrimains akalimains aram arenahs askminecraft bardmains beautifulminecraft bestofbronze bestoflegaladvice bestoftribunal braummains bravenewbies budgetdecks builddaily bukkit bukkitmodding camillemains casualmtg circloljerk civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms clg cloud9 clutchgaming coalblocksburnforever competitiveedh competitivehs competitiveminecraft competitivewild continuemyadventure ctm cubeworldproblems customhearthstone custommagic devoted dirtysionmains dragonvale dust514 edh edstonehelper enairim eve evedreddit evejobs evelynnmains evememes evenewbies eveonline eveporn fantasylcs feedthebeast fioramains fittings fizzmains flatcore fnatic frackinuniverse freemagic gangplankmains grelodfuckingdying hearthdecklists hearthmemes hearthstone hearthstonecirclejerk hearthstonevods hecarimmains hscoaching hspulls hstournaments ireliamains janna jhinmains karthusmains kaynmains khazixmains kindred kogmawmains leagueconnect leagueofgiving leagueofjinx leagueoflegends leagueoflegendsmeta leagueofmemes leagueofmeta leagueofvideos leblancmains lolchampconcepts lolcommunity loleventvods lolfanart lolgaymers lolstreams loltwistedtreeline loreofleague lrcast lulumains lux magiccardpulls magicdeckbuilding magicduels magictcg mapmag marksmanmains mcadvancements mccustomized mcfunctionsf mchardcore mchost mcpe mcpi mcrenders mcservers mcsimages mcstaff mctexturepacks mctourney mcweeklychallenge minecenter minecraft minecraft360 minecraftbuddies minecraftbugs minecraftbuilds minecraftcirclejerk minecraftcommands minecraftconspiracies minecraftfaq minecraftfighters minecraftinventions minecraftirl minecraftmapmaking minecraftmaps minecraftmemes minecraftmod minecraftmodder minecraftmodules minecraftnoteblocks minecraftpe minecraftphotography minecraftpixelart minecraftplaytesting minecraftrenders minecraftschematics minecraftseeds minecraftskins minecraftstorymode minecraftsuggestions minecraftswitch minecraftvids minecraftwallpapers minerssaloon moddedmc moddingmc modernmagic mrhb mtgaltered mtgcube mtgfinance mtggore mtgjudge mtglimited mtgo mtgporn nidaleemains nomansskythegame oblivionmods opticgaming ourleague pauper perkusmaximus pureminecraft quinnmains realms redstone redstonenoobs riotpls rivalsofaether rivenmains rschronicle rsidleadv runescape runescapemerchanting ryzemains scape shacomains shittymcbuilds shittymcsuggestions singedmains skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skywind sonamains sorakamains spikes spongeproject staffcraft summonerschool supportlol survivalredstone swainmains taliyahmains talonmains team_liquid teamredditteams teamsolomid teemotalk teslore textureaday theaether thehearth themonument thesecretweapon theshaft threshmains tigerstaden trueminecraft tryndameremains twitchmains udyrmains ultrahardcore varusmains velkoz videominecraft viktormains wildhearthstone worldpainter xedit xerathmains yasuomains yimo zedmains zoemains zyramains'.split()
 
+subreddits_that_banned_me = []
 my_comments = []
 replied_to = []
 
@@ -219,7 +220,8 @@ def author_is_bot(comment):
     return False
 
 def blacklisted_subreddit(comment):
-    return comment.subreddit.display_name.lower() in subreddit_blacklist
+    subreddit = comment.subreddit.display_name.lower()
+    return subreddit in subreddit_blacklist or subreddit in subreddits_that_banned_me
 
 def ping():
     os.system("afplay /System/Library/Sounds/Ping.aiff")
@@ -287,6 +289,7 @@ def reply(comment, text):
         print("-> sorry, can't reply:", e, ":(")
     except prawcore.exceptions.Forbidden:
         print("-> oops, looks like I'm banned there :(")
+        subreddits_that_banned_me.append(comment.subreddit.display_name.lower())
 
 print('Starting bot...')
 i = 0
