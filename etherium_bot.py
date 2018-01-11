@@ -17,6 +17,7 @@ required_words = ['etherium', 'etheriums', 'ethereium', 'etharium', 'entherium',
 banned_words = [
     'ethereum', '/r/etherium',
     'spell', 'spelt', 'spelled', 'spelling',
+    'misspell', 'misspelt', 'misspelled', 'misspelling',
     'call', 'called', 'calling',
     'write', 'wrote', 'written', 'writing',
     'type', 'typed', 'typing', 'typo',
