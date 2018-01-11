@@ -221,6 +221,11 @@ def reply_to_response(comment):
         print("-> ignoring because we've already replied once to this user:", comment.author.name)
         return
 
+    if len(comment.body) > 400:
+        reply(comment, "Sorry, I'm just a bot \*beep boop\* [:-]")
+        replied_to.append(comment.author.name)
+        return
+
     text = comment.body.lower()
 
     for (patterns, responses) in response_map:
