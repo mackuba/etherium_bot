@@ -37,7 +37,7 @@ my_comments = []
 replied_to = []
 
 response_text = "It's spelled 'Ethereum'."
-mention_response = "\*beep boop\*"
+mention_response = "\\*beep boop\\*"
 
 response_map = [
     [
@@ -100,7 +100,7 @@ response_map = [
     [
         ['isbot etherium_bot'],
         ['Of course I am a bot!', "Of course I'm a bot, how could you doubt it!",
-         "I'm totally a bot, srsly. \*beep boop\*"]
+         "I'm totally a bot, srsly. \\*beep boop\\*"]
     ]
 ]
 
@@ -260,7 +260,7 @@ def reply_to_response(comment):
         return
 
     if len(comment.body) > 400:
-        reply(comment, "Sorry, I'm just a bot \*beep boop\* [:-]")
+        reply(comment, "Sorry, I'm just a bot \\*beep boop\\* [:-]")
         replied_to.append(comment.author.name)
         return
 
