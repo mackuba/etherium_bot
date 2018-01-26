@@ -213,7 +213,7 @@ def comment_text_really_matches(text):
     return False
 
 def author_is_bot(comment):
-    for suffix in ['bot', 'moderator', 'notifier']:
+    for suffix in ['bot', 'moderator', 'notifier', 'totesmessenger']:
         if comment.author.name.lower().endswith(suffix):
             return True
 
