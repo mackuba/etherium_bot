@@ -53,11 +53,11 @@ response_map = [
         ["I'm just a bot [:-]"]
     ],
     [
-        ['thanks', 'thank you', 'thx'],
+        ['thanks', 'thanx', 'thank you', 'thank for'],
         ["You're welcome [:-]", "You're welcome!", 'No problem [:-]', 'No problem!']
     ],
     [
-        [re.compile(r'^ty$')],
+        [re.compile(r'^ty$'), 'thx'],
         ['np [:-]']
     ],
     [
@@ -65,7 +65,7 @@ response_map = [
         []
     ],
     [
-        ['epic', 'nice', 'cool', 'neat', 'great'],
+        ['epic', 'nice', 'cool', 'neat', 'great', 'cute'],
         ['Thanks! [:-]', 'Thanks!']
     ],
     [
@@ -77,16 +77,17 @@ response_map = [
         ['¯\\\_(ツ)\_/¯']
     ],
     [
-        [re.compile(r'^(actually,? )?it\'s (actually )?(spelled|spelt)')],
+        [re.compile(r'^(actually,? )?it\'?s (actually )?(spelled|spelt)')],
         ["It's spelled \"you're talking to a bot\" [:-]"]
     ],
     [
-        ['fuck', 'stfu', 'piss', 'dick', 'worthless', 'useless', 'annoying', 'stupid bot', 'go to hell', 'shut up',
-         'shutup', re.compile(r'\bkill\b'), re.compile(r'\bdie\b')],
+        ['fuck', 'shitty', 'shittiest', 'stfu', 'piss', 'dick', 'worthless', 'useless', 'annoying', 'stupid bot',
+         'go to hell', 'shut up', 'shutup', 'kill yourself', re.compile(r'\bdie\b')],
         [':(']
     ],
     [
-        ['your handle', 'your name', 'your username', 'your nick'],
+        ['your handle', 'your name', 'your username', 'your nick',
+         'username is', 'username spells', 'username checks'],
         ["I correct people who write 'etherium', so I'm an etherium bot, very logical [:-]"]
     ],
     [
@@ -94,8 +95,12 @@ response_map = [
         ["Actually, it's spelling, not grammar [:-]"]
     ],
     [
-        [re.compile(r'^\s*([aeir]+th[aei]+r\w+\??\s*)+\s*$')],
-        ['Stop it :>', 'Nice try [:-]', 'ಠ_ಠ', 'No.']
+        ['ethereum'],
+        []
+    ],
+    [
+        [re.compile(r'^\s*([aeir]+th[aei]+r\w+\s*)+[\s\?.!]*$')],
+        ['Stop it :>', 'Nice try [:-]', 'ಠ_ಠ', 'No.', "\\*angry robot face\\*"]
     ],
     [
         ['isbot etherium_bot'],
