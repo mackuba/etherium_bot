@@ -38,6 +38,7 @@ replied_to = []
 
 response_text = "It's spelled 'Ethereum'."
 mention_response = "\\*beep boop\\*"
+initial_sleep = 30
 
 response_map = [
     [
@@ -310,6 +311,7 @@ def reply(comment, text):
 
 print('Starting bot...')
 i = 0
+sleep_time = initial_sleep
 
 while True:
     print('Loading comments...')
@@ -318,6 +320,7 @@ while True:
         try:
             for comment in reddit.subreddit('all').stream.comments():
                 i += 1
+                sleep_time = initial_sleep
 
                 if responds_to_me(comment):
                     reply_to_response(comment)
@@ -331,7 +334,8 @@ while True:
 
         except (praw.exceptions.APIException, prawcore.exceptions.PrawcoreException) as e:
             print('PRAW error: ', e)
-            time.sleep(30)
+            time.sleep(sleep_time)
+            sleep_time *= 2
     except KeyboardInterrupt:
         print()
         print('Bye!')
