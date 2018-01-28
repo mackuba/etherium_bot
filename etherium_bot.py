@@ -156,6 +156,7 @@ def comment_matches(comment):
     if not found:
         return False
 
+    print('----------')
     print_comment(comment)
 
     if not comment_text_really_matches(text):
@@ -238,6 +239,7 @@ def reply_to_mention(comment):
     if author_is_bot(comment):
         return
 
+    print('----------')
     print('*MENTIONED*')
     print_comment(comment)
 
@@ -248,6 +250,7 @@ def reply_to_mention(comment):
     reply(comment, mention_response)
 
 def reply_to_response(comment):
+    print('----------')
     print('*REPLY RECEIVED*')
     print_comment(comment)
 
