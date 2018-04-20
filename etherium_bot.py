@@ -21,7 +21,8 @@ banned_words = [
     'call', 'called', 'calling',
     'write', 'wrote', 'written', 'writing',
     'type', 'typed', 'typing', 'typo',
-    'astrolabe', 'city', 'master', 'metal', 'reach', 'scimitar', 'sculptor', 'shaper',
+    'you mean', 'you meant',
+    'astrolabe', 'city', 'crown', 'master', 'metal', 'reach', 'scimitar', 'sculptor', 'shaper',
     'dragonvale', 'eve', 'gathering', 'hearthstone', 'magic', 'minecraft', 'mtg', 'oblivion', 'runescape', 'skyrim',
     'etherium_bot', 'etherium\\_bot', 'bot'
 ]
@@ -30,7 +31,7 @@ required_words_regexp = [re.compile(r'\b%s\b' % word) for word in required_words
 banned_words_regexp = [re.compile(r'\b%s\b' % word) for word in banned_words]
 pattern_type = type(re.compile(''))
 
-banned_subreddits = '12winarenalog 2007scape actualredstone admincraft adorableocelots affinityforartifacts ahrimains akalimains aram arenahs askminecraft bardmains beautifulminecraft bestofbronze bestoflegaladvice bestoftribunal braummains bravenewbies budgetdecks builddaily bukkit bukkitmodding camillemains casualmtg circloljerk civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms clg cloud9 clutchgaming coalblocksburnforever competitiveedh competitivehs competitiveminecraft competitivewild continuemyadventure ctm cubeworldproblems customhearthstone custommagic devoted dirtysionmains dragonvale dust514 edh edstonehelper enairim eve evedreddit evejobs evelynnmains evememes evenewbies eveonline eveporn fantasylcs feedthebeast fioramains fittings fizzmains flatcore fnatic frackinuniverse freemagic gangplankmains grelodfuckingdying hearthdecklists hearthmemes hearthstone hearthstonecirclejerk hearthstonevods hecarimmains hscoaching hspulls hstournaments ireliamains janna jhinmains karthusmains kaynmains khazixmains kindred kogmawmains leagueconnect leagueofgiving leagueofjinx leagueoflegends leagueoflegendsmeta leagueofmemes leagueofmeta leagueofvideos leblancmains lolchampconcepts lolcommunity loleventvods lolfanart lolgaymers lolstreams loltwistedtreeline loreofleague lrcast lulumains lux magiccardpulls magicdeckbuilding magicduels magictcg mapmag marksmanmains mcadvancements mccustomized mcfunctionsf mchardcore mchost mcpe mcpi mcrenders mcservers mcsimages mcstaff mctexturepacks mctourney mcweeklychallenge minecenter minecraft minecraft360 minecraftbuddies minecraftbugs minecraftbuilds minecraftcirclejerk minecraftcommands minecraftconspiracies minecraftfaq minecraftfighters minecraftinventions minecraftirl minecraftmapmaking minecraftmaps minecraftmemes minecraftmod minecraftmodder minecraftmodules minecraftnoteblocks minecraftpe minecraftphotography minecraftpixelart minecraftplaytesting minecraftrenders minecraftschematics minecraftseeds minecraftskins minecraftstorymode minecraftsuggestions minecraftswitch minecraftvids minecraftwallpapers minerssaloon moddedmc moddingmc modernmagic mrhb mtgaltered mtgbracket mtgcube mtgfinance mtggore mtgjudge mtglegacy mtglimited mtgo mtgporn nidaleemains nomansskythegame oblivionmods opticgaming ourleague pauper perkusmaximus pureminecraft quinnmains realms redstone redstonenoobs riotpls rivalsofaether rivenmains rschronicle rsidleadv runescape runescapemerchanting ryzemains scape shacomains shittymcbuilds shittymcsuggestions singedmains skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skywind sonamains sorakamains spikes spongeproject staffcraft summonerschool supportlol survivalredstone swainmains taliyahmains talonmains team_liquid teamredditteams teamsolomid teemotalk teslore textureaday theaether thehearth themonument thesecretweapon theshaft threshmains tigerstaden trueminecraft tryndameremains twitchmains udyrmains ultrahardcore varusmains velkoz videominecraft viktormains wildhearthstone worldbuilding worldpainter xedit xerathmains yasuomains yimo zedmains zoemains zyramains'.split()
+banned_subreddits = '12winarenalog 2007scape actualredstone admincraft adorableocelots affinityforartifacts ahrimains akalimains aram arenahs askminecraft bardmains beautifulminecraft bestofbronze bestoflegaladvice bestoftribunal braummains bravenewbies budgetdecks builddaily bukkit bukkitmodding camillemains casualmtg circloljerk civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms clg cloud9 clutchgaming coalblocksburnforever competitiveedh competitivehs competitiveminecraft competitivewild continuemyadventure ctm cubeworldproblems customhearthstone custommagic devoted dirtysionmains dragonvale dust514 edh edstonehelper enairim eve evedreddit evejobs evelynnmains evememes evenewbies eveonline eveporn fantasylcs feedthebeast fioramains fittings fizzmains flatcore fnatic frackinuniverse freemagic gangplankmains grelodfuckingdying hearthdecklists hearthmemes hearthstone hearthstonecirclejerk hearthstonevods hecarimmains hscoaching hspulls hstournaments ireliamains janna jhinmains karthusmains kaynmains khazixmains kindred knightfallmtg kogmawmains leagueconnect leagueofgiving leagueofjinx leagueoflegends leagueoflegendsmeta leagueofmemes leagueofmeta leagueofvideos leblancmains lolchampconcepts lolcommunity loleventvods lolfanart lolgaymers lolstreams loltwistedtreeline loreofleague lrcast lulumains lux magiccardpulls magicdeckbuilding magicduels magictcg mapmag marksmanmains mcadvancements mccustomized mcfunctionsf mchardcore mchost mcpe mcpi mcrenders mcservers mcsimages mcstaff mctexturepacks mctourney mcweeklychallenge minecenter minecraft minecraft360 minecraftbuddies minecraftbugs minecraftbuilds minecraftcirclejerk minecraftcommands minecraftconspiracies minecraftfaq minecraftfighters minecraftinventions minecraftirl minecraftmapmaking minecraftmaps minecraftmemes minecraftmod minecraftmodder minecraftmodules minecraftnoteblocks minecraftpe minecraftphotography minecraftpixelart minecraftplaytesting minecraftrenders minecraftschematics minecraftseeds minecraftskins minecraftstorymode minecraftsuggestions minecraftswitch minecraftvids minecraftwallpapers minerssaloon moddedmc moddingmc modernmagic mrhb mtgaltered mtgbracket mtgcube mtgfinance mtggore mtgjudge mtglegacy mtglimited mtgo mtgporn nidaleemains nomansskythegame oblivionmods opticgaming ourleague overwatch pauper perkusmaximus pureminecraft quinnmains realms redstone redstonenoobs riotpls rivalsofaether rivenmains rschronicle rsidleadv runescape runescapemerchanting ryzemains scape shacomains shittymcbuilds shittymcsuggestions singedmains skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skywind sonamains sorakamains spikes spongeproject staffcraft summonerschool supportlol survivalredstone swainmains taliyahmains talonmains team_liquid teamredditteams teamsolomid teemotalk teslore textureaday theaether thehearth themonument thesecretweapon theshaft threshmains tigerstaden trueminecraft tryndameremains twitchmains udyrmains ultrahardcore varusmains velkoz videominecraft viktormains wildhearthstone worldbuilding worldpainter xedit xerathmains yasuomains yimo zedmains zoemains zyramains'.split()
 
 subreddits_that_banned_me = []
 my_comments = []
@@ -54,16 +55,20 @@ response_map = [
         ["I'm just a bot [:-]"]
     ],
     [
+        ["you're right", 'you are right'],
+        ["Of course I'm right, I'm a bot [:-]"]
+    ],
+    [
+        ['catch', 'thanks to', 'oh fuck'],
+        []
+    ],
+    [
         ['thanks', 'thanx', 'thank you', 'thank for'],
         ["You're welcome [:-]", "You're welcome!", 'No problem [:-]', 'No problem!']
     ],
     [
         [re.compile(r'^ty$'), 'thx'],
         ['np [:-]']
-    ],
-    [
-        ['catch'],
-        []
     ],
     [
         ['epic', 'nice', 'cool', 'neat', 'great', 'cute'],
@@ -74,25 +79,31 @@ response_map = [
         ['No problem [:-]']
     ],
     [
-        ["don't care", 'dont care', 'could care less', "couldn't care less", 'nobody cares'],
+        ["don't care", 'dont care', 'could care less', "couldn't care less", 'nobody cares', 'how i want', 'who cares'],
         ['¯\\\_(ツ)\_/¯']
     ],
     [
-        [re.compile(r'^(actually,? )?it\'?s (actually )?(spelled|spelt)')],
+        [re.compile(r'spelled.*spelt'), re.compile(r'spelt.*spelled')],
+        ['https://www.grammarly.com/blog/spelled-spelt/']
+    ],
+    [
+        [re.compile(r'^(actually,? )?(its|it\'s|it is) (actually )?(spelled|spelt)')],
         ["It's spelled \"you're talking to a bot\" [:-]"]
     ],
     [
-        ['fuck', 'shitty', 'shittiest', 'stfu', 'piss', 'dick', 'worthless', 'useless', 'annoying', 'stupid bot',
-         'go to hell', 'shut up', 'shutup', 'kill yourself', re.compile(r'\bdie\b')],
+        ['shitty', 'shittiest', 'worthless', 'useless', 'annoying', 'stupid bot', 'stupid robot',
+        'stfu', 'shut up', 'shutup',
+        'go to hell', 'kill yourself', 'screw you', 'screw u', re.compile(r'\bdie\b'),
+        'fucking', 'fuck you', 'fuck off', 'piss', 'dick'],
         [':(']
     ],
     [
-        ['your handle', 'your name', 'your username', 'your nick',
-         'username is', 'username spells', 'username checks'],
+        ['your handle', 'your name', 'your username', 'your user name', 'your nick', 'your u/n', 'profile name',
+         'username is', 'username spells', 'name checks out', "name doesn't check out"],
         ["I correct people who write 'etherium', so I'm an etherium bot, very logical [:-]"]
     ],
     [
-        ['grammar nazi'],
+        [re.compile(r'\bgrammar\b')],
         ["Actually, it's spelling, not grammar [:-]"]
     ],
     [
@@ -100,7 +111,7 @@ response_map = [
         []
     ],
     [
-        [re.compile(r'^\s*([aeir]+th[aei]+r\w+\s*)+[\s\?.!]*$')],
+        [re.compile(r'^\s*([aeir]+th[aei]+r\w+\s*\,?\s*)+[\s\?.!]*$')],
         ['Stop it :>', 'Nice try [:-]', 'ಠ_ಠ', 'No.', "\\*angry robot face\\*"]
     ],
     [
