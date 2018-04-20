@@ -128,6 +128,9 @@ def load_subreddit_blacklist():
 
 subreddit_blacklist = load_subreddit_blacklist()
 
+def current_time():
+    return time.strftime("%H:%M:%S", time.gmtime())
+
 def print_comment(comment):
     lines = comment.body.split('\n')
 
@@ -320,12 +323,12 @@ def reply(comment, text):
         print("-> oops, looks like I'm banned there :(")
         subreddits_that_banned_me.append(comment.subreddit.display_name.lower())
 
-print('Starting bot...')
+print('[%s] Starting bot...' % current_time())
 i = 0
 sleep_time = initial_sleep
 
 while True:
-    print('Loading comments...')
+    print('[%s] Loading comments...' % current_time())
 
     try:
         try:
@@ -344,7 +347,7 @@ while True:
                     print(i)
 
         except (praw.exceptions.APIException, prawcore.exceptions.PrawcoreException) as e:
-            print('PRAW error: ', e)
+            print('[%s] PRAW error: ' % current_time(), e)
             time.sleep(sleep_time)
             sleep_time *= 2
     except KeyboardInterrupt:
