@@ -175,26 +175,28 @@ def comment_matches(comment):
     print('----------')
     print_comment(comment)
 
+    ignored = False
+
     if not comment_text_really_matches(text):
         print('-> ignoring because the string might be inside a quote/reference or a part of another word')
-        return False
+        ignored = True
 
     if author_is_bot(comment):
         print('-> ignoring because the author might be a bot:', comment.author.name)
-        return False
+        ignored = True
 
     if blacklisted_subreddit(comment):
         print('-> ignoring because of blacklisted subreddit:', comment.subreddit.display_name)
-        return False
+        ignored = True
 
     if len(comment.body) > 1000:
         print('-> ignoring because the comment is too long:', len(comment.body), 'characters')
-        return False
+        ignored = True
 
     for regexp in banned_words_regexp:
         if regexp.search(text):
             print('-> ignoring because it includes the word:', regexp.pattern.replace(r'\b', ''))
-            return False
+            ignored = True
 
     parent = comment.parent()
 
@@ -206,9 +208,9 @@ def comment_matches(comment):
     for regexp in required_words_regexp:
         if regexp.search(parent_text):
             print('-> ignoring because parent comment/post includes the word:', regexp.pattern.replace(r'\b', ''))
-            return False
+            ignored = True
 
-    return True
+    return not ignored
 
 def comment_text_really_matches(text):
     if '://' in text:
