@@ -171,6 +171,7 @@ def comment_matches(comment):
     if not found:
         return False
 
+    print()
     print('----------')
     print_comment(comment)
 
@@ -254,6 +255,7 @@ def reply_to_mention(comment):
     if author_is_bot(comment):
         return
 
+    print()
     print('----------')
     print('*MENTIONED*')
     print_comment(comment)
@@ -265,6 +267,7 @@ def reply_to_mention(comment):
     reply(comment, mention_response)
 
 def reply_to_response(comment):
+    print()
     print('----------')
     print('*REPLY RECEIVED*')
     print_comment(comment)
@@ -344,13 +347,15 @@ while True:
                     reply_to_comment(comment)
 
                 if i % 10000 == 0:
-                    print(i)
+                    print('.', end = '', flush = True)
 
         except (praw.exceptions.APIException, prawcore.exceptions.PrawcoreException) as e:
+            print()
             print('[%s] PRAW error: ' % current_time(), e)
             time.sleep(sleep_time)
             sleep_time *= 2
     except KeyboardInterrupt:
+        print()
         print()
         print('Bye!')
         exit(0)
