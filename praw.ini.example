@@ -1,0 +1,8 @@
+[etheriumbot]
+client_id=qwertyuiop
+client_secret=qwertyuiop
+
+username=mybotname
+password=killallhumans
+
+user_agent=bot:mybotname:v0.1 (by /u/mynamehere)
