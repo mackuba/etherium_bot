@@ -363,7 +363,7 @@ while True:
 
         except (praw.exceptions.APIException, prawcore.exceptions.PrawcoreException) as e:
             print()
-            print('[%s] PRAW error: ' % current_time(), e)
+            print('[%s] PRAW error (%s): ' % (current_time(), e.__class__.__name__), e)
             time.sleep(sleep_time)
             sleep_time *= 2
     except KeyboardInterrupt:
