@@ -34,6 +34,8 @@ pattern_type = type(re.compile(''))
 
 banned_subreddits = '12winarenalog 2007scape 40klore actualredstone admincraft adorableocelots affinityforartifacts ahrimains akalimains aplanetofmine aram arenahs askminecraft bardmains beautifulminecraft bestofbronze bestoflegaladvice bestoftribunal braummains bravenewbies budgetdecks builddaily bukkit bukkitmodding camillemains casualmtg circloljerk civclassics civcraft civex civexcirclejerk civextrade civilizatonexperiment civrealms clg cloud9 clutchgaming coalblocksburnforever competitiveedh competitivehs competitiveminecraft competitivewild continuemyadventure createthisworld ctm cubeworldproblems customhearthstone custommagic d100 devoted dirtysionmains dragonvale dust514 edh edstonehelper eggsmtg enairim eve evedreddit evejobs evelynnmains evememes evenewbies eveonline eveporn fallout fantasylcs fantasywriters feedthebeast fioramains fittings fizzmains flatcore fnatic frackinuniverse freemagic gangplankmains grelodfuckingdying gw2exchange hearthdecklists hearthmemes hearthstone hearthstonecirclejerk hearthstonevods hecarimmains hscoaching hspulls hstournaments ireliamains janna jhinmains karthusmains kaynmains khazixmains kindred knightfallmtg kogmawmains leagueconnect leagueofgiving leagueofjinx leagueoflegends leagueoflegendsmeta leagueofmemes leagueofmeta leagueofvideos leblancmains lolchampconcepts lolcommunity loleventvods lolfanart lolgaymers lolstreams loltwistedtreeline loreofleague lrcast lulumains lux magiccardpulls magicdeckbuilding magicduels magictcg mapmag marksmanmains mcadvancements mccustomized mcfunctionsf mchardcore mchost mcpe mcpi mcrenders mcservers mcsimages mcstaff mctexturepacks mctourney mcweeklychallenge minecenter minecraft minecraft360 minecraftbuddies minecraftbugs minecraftbuilds minecraftcirclejerk minecraftcommands minecraftconspiracies minecraftfaq minecraftfighters minecraftinventions minecraftirl minecraftmapmaking minecraftmaps minecraftmemes minecraftmod minecraftmodder minecraftmodules minecraftnoteblocks minecraftpe minecraftphotography minecraftpixelart minecraftplaytesting minecraftrenders minecraftschematics minecraftseeds minecraftskins minecraftstorymode minecraftsuggestions minecraftswitch minecraftvids minecraftwallpapers minerssaloon moddedmc moddingmc modernmagic mrhb mtgaltered mtgbracket mtgcube mtgfinance mtggore mtgjudge mtglegacy mtglimited mtgo mtgporn nidaleemains nomansskythegame oblivionmods oldschoolrs opticgaming ourleague overwatch pauper perkusmaximus ponzamtg pureminecraft quinnmains realms redstone redstonenoobs riotpls rivalsofaether rivenmains rschronicle rsidleadv runescape runescapemerchanting ryzemains scape shacomains shittymcbuilds shittymcsuggestions singedmains skyrim skyrimmod_jp skyrimmods skyrimporn skyrimrequiem skyrimvr skywind sonamains sorakamains spikes spongeproject staffcraft steamkiwi stellaris summonerschool supportlol survivalredstone swainmains taliyahmains talonmains tamrielscholarsguild team_liquid teamredditteams teamsolomid teemotalk teslore textureaday theaether thehearth themonument thesecretweapon theshaft threshmains tigerstaden tinyleaders tronmtg trueminecraft tryndameremains twitchmains udyrmains ultrahardcore unrealengine varusmains velkoz videominecraft viktormains warhammer40k wildhearthstone worldbuilding worldpainter xedit xerathmains yasuomains yimo zedmains zoemains zyramains'.split()
 
+silenced_subreddits = 'edh xymarket'.split()
+
 subreddits_that_banned_me = []
 my_comments = []
 replied_to = []
@@ -172,6 +174,9 @@ def comment_matches(comment):
     if not found:
         return False
 
+    if silenced_subreddit(comment):
+        return False
+
     print()
     print('----------')
     print_comment(comment)
@@ -247,6 +252,10 @@ def author_is_bot(comment):
 def blacklisted_subreddit(comment):
     subreddit = comment.subreddit.display_name.lower()
     return subreddit in subreddit_blacklist or subreddit in subreddits_that_banned_me
+
+def silenced_subreddit(comment):
+    subreddit = comment.subreddit.display_name.lower()
+    return subreddit in silenced_subreddits
 
 def ping():
     os.system("afplay /System/Library/Sounds/Ping.aiff")
